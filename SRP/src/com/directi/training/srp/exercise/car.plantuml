@@ -1,0 +1,35 @@
+@startuml
+CarsDB "1" *- "many" Car: contains
+BestCar "1" - "1" CarsDB: has >
+CarManager "1" - "1" CarsDB: assosiated >
+CarManager "1" - "1" BestCar: associated >
+
+class CarsDB {
+  +getCars(): List<Car>
+  +getCarById(carId: String):Car
+  +getCarsNames(): String
+}
+
+class BestCar{
+    -carsDB:CarsDB
+    +getBestCar():Car
+}
+class CarManager{
+    -carsDB:CarsDB
+    -bestCar:BestCar
+    +getCarById(String carId):Car
+    +getCarsNames():String
+    +getBestCar():Car
+}
+class Car {
+    -id:String
+    -model:String
+    -brand:String
+    +getId():String
+    +getModel():String
+    +getBrand():String
+}
+
+@enduml
+
+

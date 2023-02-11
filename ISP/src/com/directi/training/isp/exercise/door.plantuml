@@ -1,0 +1,48 @@
+@startuml
+interface Isensing{
+    +proximityCallback():void
+}
+interface Itimer{
+    +timeOutCallback():void
+}
+interface Door{
+    +lock():void
++unlock():void
++open():void
++close():void
+}
+
+class SensingDoor implements Door,Isensing{
+-_locked:boolean
+-_opened:boolean
++lock():void
++unlock():void
++open():void
++close():void
++proximityCallback():void
+}
+class TimedDoor implements Door,Itimer{
+-_locked:boolean
+-_opened:boolean
++lock():void
++unlock():void
++open():void
++close():void
++timeOutCallback():void
+}
+
+class Sensor{
+    +register(door:SensingDoor):void
+    +isPersonClose():boolean
+}
+class Timer{
+    +register(timeOut:long,door:TimedDoor):void
+    
+}
+
+SensingDoor  --> Sensor:register
+TimedDoor --> Timer:register
+
+
+
+@enduml

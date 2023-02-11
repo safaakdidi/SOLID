@@ -1,10 +1,10 @@
 package com.directi.training.lsp.exercise;
 
-public class ElectronicDuck extends Duck
+public class ElectronicDuck
 {
     private boolean _on = false;
 
-    @Override
+   
     public void quack()
     {
         if (_on) {
@@ -14,14 +14,18 @@ public class ElectronicDuck extends Duck
         }
     }
 
-    @Override
+    
     public void swim()
     {
-        if (_on) {
+       if (_on) {
+    	   
             System.out.println("Electronic duck swim");
         } else {
             throw new RuntimeException("Can't swim when off");
         }
+       
+    	
+    	
     }
 
     public void turnOn()

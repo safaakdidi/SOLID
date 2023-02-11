@@ -1,0 +1,86 @@
+ @startuml
+
+
+class Base64Encoder implements Encoder{
+ encode(input:String):String
+
+}
+
+interface DataDestination {
+  +write(String data): int
+}
+
+
+interface DataSource {
+	 +getData():String
+}
+
+
+interface Encoder {
+ +encode(input:String):String
+}
+
+class MyDatabase {
+  +write(String inputString): int
+}
+
+class NetworkDataSource implements DataSource {
+  +getData(): String
+}
+
+class EncodingModule
+{
+	 encoder:Encoder
+	 datasource:DataSource
+	 datadestination:DataDestination
+     EncodingModule(encoder :Encoder,dataSource: Datasource,dataDestination :Datadestination)
+        
+     +encode() :void 
+    
+
+
+}
+
+class FileDataDestination implements DataDestination{
+      +write(String data): int
+
+}
+
+interface DataDestination {
+  +write(String data): int
+}
+
+class FileDataSource implements DataSource {
+  +getData(): String
+}
+
+
+
+class EncodingModuleClient {
+  +main(String[]): void
+}
+
+class MyDatabase implements DataDestination
+{
+  +write(inputString: String) : int
+  -_data: Map<Integer, String>
+  -_count: int
+}
+
+
+
+
+
+NetworkDataSource ..> DataSource
+EncodingModuleClient ..> EncodingModule
+
+EncodingModule --> Encoder
+EncodingModule --> DataSource
+EncodingModule --> DataDestination
+
+
+
+
+
+
+@enduml

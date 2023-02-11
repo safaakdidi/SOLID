@@ -1,0 +1,27 @@
+@startuml
+ 
+
+ class Duck{
+    +quack():void
+    +swim():void
+ }
+ class ElectronicDuck{
+    -on:boolean
+    +quack():void
+    +swim():void
+    +turnOn:void
+    +turnOff:void
+ }
+
+ class Pool{
+   +run():void
+   +quack(ducks:Duck...):void
+   +quackElectric(ducks:ElectronicDuck...):void
+   +swim(ducks:Duck...):void
+   +swimElectric(ducks:ElectronicDuck...):void
+ }
+ Pool ..> Duck:client
+ Pool ..> ElectronicDuck:client
+
+
+@enduml

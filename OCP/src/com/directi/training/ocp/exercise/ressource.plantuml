@@ -1,0 +1,41 @@
+@startuml
+
+
+interface Resource {
+     +allocate():int 
+     +void free(resourceId:int)
+}
+
+
+class ResourceAllocator
+{
+    -res:Resource
+    +allocate():int
+    +free(resourceId:int):void
+       
+}
+
+
+class SpaceSlot implements Resource {
+  -markSpaceSlotFree(resourceId: int): void
+  -markSpaceSlotBusy(resourceId: int): void
+  -findFreeSpaceSlot(): int
+  +allocate(): int
+  +free(resourceId: int): void
+}
+
+
+
+class TimeSlot implements Resource {
+  -markTimeSlotFree(resourceId: int): void
+  -markTimeSlotBusy(resourceId: int): void
+  -findFreeTimeSlot(): int
+  +allocate(): int
+  +free(resourceId: int): void
+}
+
+
+ResourceAllocator --> Resource
+
+
+@enduml
